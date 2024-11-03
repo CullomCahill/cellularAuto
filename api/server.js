@@ -42,5 +42,7 @@ app.post('/', (req, res) => {
 });
 
 
-
-app.listen(process.env.PORT || 3000) 
+// remove app.listen for vercel, I suppose reenable it to run local
+//app.listen(process.env.PORT || 3000) 
+// Use this for deploying to vercel:
+module.exports = app;
