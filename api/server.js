@@ -8,16 +8,8 @@ const path = require('path'); // importing path
 
 
 
-// const indexRouter = require('./routes/index')
-//     //points to relative path
-// const authorRouter = require('./routes/authors')
-//     //author router
-
-
 app.set('view engine', 'ejs') //set view engine - remember to npm i ejs!
 app.set('views', __dirname + '/views') //point res.render('index') to /views folder
-// app.set('layout', 'layouts/layout' ) // static header and footer
-// app.use(expressLayouts)
 app.use(express.static(path.join(__dirname, '../public'))); // telling express to use client side .js files
 // when you reference in html, this will append /public
 app.use(bodyParser.urlencoded({extended: true}))
@@ -44,7 +36,11 @@ app.post('/', (req, res) => {
 });
 
 
-// remove app.listen for vercel, I suppose reenable it to run local
-//app.listen(process.env.PORT || 3000) 
+// New route to 'backend tools' with image
+app.get('/backendTools', (req, res) => {
+  res.render('backendTools'); // This will render views/backendTools.ejs
+});
+
+
 // Use this for deploying to vercel:
-module.exports = app;
+module.exports = app;   // 'npm run dev' runs localServer.js

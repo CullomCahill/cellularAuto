@@ -8,13 +8,27 @@ canvas {
 }
   
 body {
-    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Change this to your desired color */
+    /*margin: 0; /* Remove default margins 
+    padding: 0; /* Remove default padding */
     text-align: center;
-}
+    font-family: Arial, sans-serif; /* Set a default font, optional */
+  }
+  
 
 #canvas-container {
     margin: 20px auto;
-    width: 600px;
+    width: 1000px;
     height: 1800px;
     border: 2px solid #000;
 }
+
+.button {
+    display: inline-block;
+    padding: 2px 5px;
+    color: rgb(221, 217, 217);
+    background-color: rgb(0, 0, 2); /* Change to your desired color */
+    text-decoration: none; /* Removes the underline */
+    border-radius: 5px; /* Optional rounded corners */
+}
+

@@ -13,14 +13,23 @@
     </main>    
     <h1>Automatas!!</h1>
     <p>Rule = 2<sup>0</sup> to 2<sup>8</sup></p>
-    <form action="/" method="POST">
+    <form action="/" method="POST" id="ruleForm">
       <!--give the input submission from button a id and name to call in DOM-->
       <input type="text" id="rule" name="rule" min="1" max="256" placeholder="Enter Rule Number" required>
-      <button type="submit">Give me the goods</button>
+      <!--<button type="submit">Give me the goods</button>-->
+      <a href="#" class="button" id="submitButton">Give me the Goods</a>
     </form>
 
+    <br>
+
     <!-- Reset Button -->
-     <button id="resetButton">Reset</button>
+    <a href="#" class="button" id="resetButton">Reset</a>
+        <!--use href="#" if you want link to perform an action instead of linking to another page-->
+
+    <!-- Backend Tools -->
+    <a href="/backendTools" class="button">Backend Tools</a>
+
+  
 
 
     <br>
@@ -52,6 +61,13 @@
           }
 
       });
+
+      // Add listener for submit rule button
+      document.getElementById("submitButton").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default anchor link behavior
+        document.getElementById("ruleForm").submit(); // Submit the form
+      });
+
 
       // ---Reset button: Clear image---
       document.getElementById("resetButton").addEventListener("click", function() {

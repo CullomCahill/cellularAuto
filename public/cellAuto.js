@@ -6,7 +6,7 @@ let ruleSet //string
 
 
 function setup() {
-  let canvas = createCanvas(600, 1800); //createCanvas(width, height) - p5.js function, takes and defines
+  let canvas = createCanvas(1000, 1800); //createCanvas(width, height) - p5.js function, takes and defines
   canvas.parent('canvas-container') //telling p5.js to move canvas inside <div> with is="canvas-container"
 
   ruleSet = ruleValue.toString(2).padStart(8, "0") // .padStart adds necessary 0's
