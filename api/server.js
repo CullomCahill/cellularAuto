@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 // const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
+const path = require('path'); // importing path
+
 
 
 // const indexRouter = require('./routes/index')
@@ -16,7 +18,7 @@ app.set('view engine', 'ejs') //set view engine - remember to npm i ejs!
 app.set('views', __dirname + '/views') //point res.render('index') to /views folder
 // app.set('layout', 'layouts/layout' ) // static header and footer
 // app.use(expressLayouts)
-app.use(express.static('public')); // telling express to use client side .js files
+app.use(express.static(path.join(__dirname, '../public'))); // telling express to use client side .js files
 // when you reference in html, this will append /public
 app.use(bodyParser.urlencoded({extended: true}))
 
