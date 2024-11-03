@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style.css"> <!--dont need full path to style because in
+      with express.static('public') public folder becomes root for static assets (css js images etc)-->
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main>
+    </main>    
+    <h1>Automatas!!</h1>
+    <p>Rule = 2<sup>0</sup> to 2<sup>8</sup></p>
+    <form action="/" method="POST">
+      <!--give the input submission from button a id and name to call in DOM-->
+      <input type="text" id="rule" name="rule" min="1" max="256" placeholder="Enter Rule Number" required>
+      <button type="submit">Give me the goods</button>
+    </form>
+
+    <!-- Reset Button -->
+     <button id="resetButton">Reset</button>
+
+
+    <br>
+
+    <div id="canvas-container">
+      <% if (userRule) { %> <!--userRule defined in server.js-->
+        <p>Here's a Cellular Automata for rule <%= userRule %></p>
+        <script>
+          var userRule = "<%= userRule %> " //taking var in html and making it js variable
+          if (userRule) {
+            userRule = parseInt(userRule); // Convert to integer
+            }
+          console.log("submitted rule from ejs:", userRule)
+        </script>
+      <% } %>
+    </div> <!--#canvas-container is set up in css file-->
+
+    
+    <script>
+      // ---Expoprt rule variable---
+      document.querySelector('form').addEventListener('submit', function(event) {
+          const ruleInput = document.getElementById('rule'); //Output rule so can access from server
+          const ruleValue = Number(ruleInput.value); //turn into a number
+  
+          // Check if the input is not between 1 and 256
+          if (ruleValue < 1 || ruleValue > 256) {
+              event.preventDefault(); // Prevent the form from submitting
+              alert('Please enter a number between 1 and 256.');
+          }
+
+      });
+
+      // ---Reset button: Clear image---
+      document.getElementById("resetButton").addEventListener("click", function() {
+       //clear input field
+       document.getElementById("rule").value = '';
+
+      // Clear the URL query parameters
+      window.history.replaceState({}, document.title, window.location.pathname);
+      // clear the rendered image
+      clear(); //p5.js specific
+
+      })
+
+
+
+  </script>
+
+  <!--RUN MAIN SCRIPT-->
+  <script src="/cellAuto.js"></script>
+  
+
+  </body>
+</html>
