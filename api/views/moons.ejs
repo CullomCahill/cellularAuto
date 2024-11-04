@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moons</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"> <!-- link to same css -->
+</head>
+<body>
+    <h1>Moon times!</h1>
+    <!--These pieces are being rendered in server.js for the /moons route from the api-->  
+    <p>Sunrise: <%= sunrise %></p>
+    <p>Sunset: <%= sunset %></p>
+    <p>Moonrise: <%= moonrise %></p>
+    <p>Moonset: <%= moonset %></p>
+    <p>Moon Phase: <%= moon_phase %></p>
+    <p>You are here: <%= zipcode %></p>
+    <a href="/" class="button">Home</a>
+
+
+</body>
+</html>

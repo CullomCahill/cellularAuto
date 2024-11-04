@@ -5,6 +5,7 @@ const app = express()
 // const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const path = require('path'); // importing path
+// REMOVE const fetch = require('node-fetch') //fetching from server so use node-fetch (built in fetch() is for client side api calls)
 
 
 
@@ -40,6 +41,44 @@ app.post('/', (req, res) => {
 app.get('/backendTools', (req, res) => {
   res.render('backendTools'); // This will render views/backendTools.ejs
 });
+
+
+// Function to convert military time to 12-hour format
+function timeChange(militaryTime) {
+  const [hours, minutes] = militaryTime.split(':').map(Number);
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const adjustedHours = hours % 12 || 12; // Convert 0 and 12 hours to 12
+  return `${adjustedHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+}
+
+// Moon API 
+app.get('/moons', async (req, res) => {
+  const apiUrl = "https://api.ipgeolocation.io/astronomy?apiKey=2160b392961c4fa5ac1b75fe26c895b7"
+  try {
+    const response = await fetch(apiUrl) //get api data
+    const data = await response.json() // turn response into json object
+    // then send that data to EJS
+    console.log(data)
+
+    // convert the incoming api data 
+    const sunrise = timeChange(data.sunrise);
+    const sunset = timeChange(data.sunset);
+    const moonrise = timeChange(data.moonrise);
+    const moonset = timeChange(data.moonset)
+
+    res.render('moons', { 
+      sunrise, // don't have to set these up as :
+      sunset,
+      moonrise, 
+      moonset,
+      moon_phase: data.moon_phase, 
+      zipcode: data.location.zipcode 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+})
 
 
 // Use this for deploying to vercel:
