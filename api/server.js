@@ -6,6 +6,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const path = require('path'); // importing path
 // REMOVE const fetch = require('node-fetch') //fetching from server so use node-fetch (built in fetch() is for client side api calls)
+const fs = require('fs'); //file system
 
 
 
@@ -26,15 +27,6 @@ app.get('/', (req, res) => {
   res.render('index', { userRule }); // Pass the userRule to the .ejs template
 });
 
-// // Route to handle form submission
-// app.post('/', (req, res) => {
-//   const ruleNumber = req.body.rule; // Access the input value
-//   console.log("Rule Number Submitted:", ruleNumber); //log the rule worked
-  
-//   // Redirect to the main page with the rule number
-//   res.redirect(`/?rule=${ruleNumber}`); // Redirect with query parameter
-//     // ??
-// });
 
 // Route to handle form submission with data validation
 app.post('/', (req, res) => {
@@ -98,10 +90,60 @@ app.get('/moons', async (req, res) => {
   }
 })
 
-
+// Workout page
 app.get('/workout', (req, res) => {
   res.render('workout')
 });
+
+
+// ---- Med drops route ----
+const dropsFilePath = path.join(__dirname, '../data/drops.json'); // Absolute path
+
+app.get('/meds', (req, res) => {
+  fs.readFile(dropsFilePath, 'utf8', (err, data) => { //relative path not working for some reason?
+    if (err) {
+      console.error('File reading error:', err); // Log the actual error
+      return res.status(500).send('Error reading drops data');
+    }
+    const dropsData = JSON.parse(data);
+    res.render('meds', { dropsData });
+  });
+});
+
+// Assuming this is inside your server.js file
+
+const fs = require('fs');
+const path = require('path');
+
+// Route to get the drop count for the current day
+app.get('/meds', (req, res) => {
+  // Get the current date
+  const today = new Date();
+  const currentDate = today.toISOString().split('T')[0]; // Convert to 'YYYY-MM-DD'
+
+  // Read the drops.json file
+  fs.readFile(path.join(__dirname, '../data/drops.json'), 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send('Error reading drops data');
+      return;
+    }
+
+    // Parse the JSON data
+    const dropsData = JSON.parse(data);
+
+    // Find the drop count for today
+    const todayData = dropsData.find(entry => entry.date === currentDate);
+
+    if (todayData) {
+      // If a matching date is found, send the drop count
+      res.render('meds', { drops: todayData.drops });
+    } else {
+      // If no matching date, send a default message
+      res.render('meds', { drops: 'No data available for today' });
+    }
+  });
+});
+
 
 
 // Use this for deploying to vercel:

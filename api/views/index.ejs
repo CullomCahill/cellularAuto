@@ -13,14 +13,17 @@
     </main>    
     <h1>Cellular Automata!!</h1>
     <p>Valid Rule must be between 2<sup>0</sup> & 2<sup>8</sup></p>
-    <form action="/" method="POST" id="ruleForm">
+      <div class="intro-box">
+        <p class="small-text">Cellular automata are crucial for understanding life because they illustrate how complex patterns and behaviors can emerge from simple, local interactions governed by straightforward rules. This mirrors how, in nature, intricate systems like ecosystems and biological processes evolve from basic interactions, showing how chaos and complexity can arise naturally from simplicity.</p>
+      </div>
+    <div style="height: 20px;"></div> <!-- Adds custom space between paragraphs -->    <form action="/" method="POST" id="ruleForm">
       <!--give the input submission from button a id and name to call in DOM-->
       <input type="number" id="rule" name="rule" min="1" max="256" placeholder="Enter Rule Number" required>
       <!--<button type="submit">Give me the goods</button>-->
       <a href="#" class="button" id="submitButton">Give me the Goods</a>
     </form>
 
-    <br>
+    <div style="height: 5px;"></div> <!-- Adds custom space between paragraphs -->    <form action="/" method="POST" id="ruleForm">
 
     <!-- Reset Button -->
     <a href="#" class="button" id="resetButton">Reset</a>
@@ -32,8 +35,11 @@
     <!-- Moons -->
     <a href="/moons" class="button">Moons</a>
 
-    <!-- Yoga -->
+    <!-- workout -->
     <a href="/workout" class="button">Workout</a>
+
+    <!-- workout -->
+    <a href="/meds" class="button">Meds</a>
   
 
 

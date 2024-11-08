@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meds</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"> <!-- link to same css -->
+</head>
+<body>
+    <h1>Medicine Drops Tracker</h1>
+    <h3>Today's Date: <span id="date"></span></h3> <!--display data pulled from date script-->
+    <!--Get Date script:-->
+    <script>
+        // Get today's date
+        const today = new Date();
+
+        // Format the date as MM/DD/YYYY
+        const formattedDate = today.toLocaleDateString();
+
+        // Display the formatted date inside the span with id "date"
+        document.getElementById("date").textContent = formattedDate;
+    </script>
+    <!--drops.day = date return drops-->
+    <p>Today's drop count: <%= drops %></p>
+
+    <a href="/" class="button">Home</a>
+  </body>
+</html>

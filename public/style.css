@@ -32,3 +32,17 @@ body {
     border-radius: 5px; /* Optional rounded corners */
 }
 
+.intro-box {
+  background-color: #70bcff; /* Light blue color for the box */
+  padding: 1px;
+  border-radius: 5px; /* Optional: rounded corners */
+  width: 80%; /* Set width to a percentage or specific pixel value */
+  max-width: 1000px; /* Optional: limits width */
+  margin: 0 auto; /* Centers the box horizontally */
+}
+
+.small-text {
+  font-size: 0.85em; /* Smaller font size */
+  font-style: italic;
+  color: #000000; /* Optional: dark text color */
+}
