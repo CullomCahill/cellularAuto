@@ -26,15 +26,33 @@ app.get('/', (req, res) => {
   res.render('index', { userRule }); // Pass the userRule to the .ejs template
 });
 
-// Route to handle form submission
-app.post('/', (req, res) => {
-  const ruleNumber = req.body.rule; // Access the input value
-  console.log("Rule Number Submitted:", ruleNumber); //log the rule worked
+// // Route to handle form submission
+// app.post('/', (req, res) => {
+//   const ruleNumber = req.body.rule; // Access the input value
+//   console.log("Rule Number Submitted:", ruleNumber); //log the rule worked
   
+//   // Redirect to the main page with the rule number
+//   res.redirect(`/?rule=${ruleNumber}`); // Redirect with query parameter
+//     // ??
+// });
+
+// Route to handle form submission with data validation
+app.post('/', (req, res) => {
+  const ruleNumber = parseInt(req.body.rule, 10); //parseInt converts from a string to base 10 integer
+  if (isNaN(ruleNumber) || ruleNumber < 1 || ruleNumber > 256) {
+    //isNAN - checks if input is not a number OR
+    // is less than 1 OR is greter then 256
+      return res.status(400).send("Invalid input.");
+      // if any of those true, throw error
+      // "return" stops further execution of function
+  }
+  // Proceed if input is valid
+  console.log("Rule Number Submitted:", ruleNumber); //log the rule worked
+
   // Redirect to the main page with the rule number
   res.redirect(`/?rule=${ruleNumber}`); // Redirect with query parameter
-    // ??
 });
+
 
 
 // New route to 'backend tools' with image
@@ -79,6 +97,11 @@ app.get('/moons', async (req, res) => {
     res.status(500).send('Error fetching data');
   }
 })
+
+
+app.get('/workout', (req, res) => {
+  res.render('workout')
+});
 
 
 // Use this for deploying to vercel:
