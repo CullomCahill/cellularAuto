@@ -7,20 +7,23 @@
 </head>
 <body>
     <h1>Medicine Drops Tracker</h1>
-    <h3>Today's Date: <span id="date"></span></h3> <!--display data pulled from date script-->
-    <!--Get Date script:-->
-    <script>
-        // Get today's date
-        const today = new Date();
 
-        // Format the date as MM/DD/YYYY
-        const formattedDate = today.toLocaleDateString();
-
-        // Display the formatted date inside the span with id "date"
-        document.getElementById("date").textContent = formattedDate;
-    </script>
     <!--drops.day = date return drops-->
-    <p>Today's drop count: <%= drops %></p>
+    <p>Drops for <span id="date"></span>: <%= drops %></p>
+
+        <!--Get Date script: 
+            you must create the element "date" first above (i.e. load it in the DOM)
+            then <script> runs and sets the text content of that element-->
+        <script>
+            // Get today's date
+            const today = new Date();
+    
+            // Format the date as MM/DD/YYYY
+            const formattedDate = today.toLocaleDateString();
+    
+            // Display the formatted date inside the span with id "date"
+            document.getElementById("date").textContent = formattedDate;
+        </script>
 
     <a href="/" class="button">Home</a>
   </body>

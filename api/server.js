@@ -96,24 +96,6 @@ app.get('/workout', (req, res) => {
 });
 
 
-// ---- Med drops route ----
-const dropsFilePath = path.join(__dirname, '../data/drops.json'); // Absolute path
-
-app.get('/meds', (req, res) => {
-  fs.readFile(dropsFilePath, 'utf8', (err, data) => { //relative path not working for some reason?
-    if (err) {
-      console.error('File reading error:', err); // Log the actual error
-      return res.status(500).send('Error reading drops data');
-    }
-    const dropsData = JSON.parse(data);
-    res.render('meds', { dropsData });
-  });
-});
-
-// Assuming this is inside your server.js file
-
-const fs = require('fs');
-const path = require('path');
 
 // Route to get the drop count for the current day
 app.get('/meds', (req, res) => {
@@ -123,20 +105,30 @@ app.get('/meds', (req, res) => {
 
   // Read the drops.json file
   fs.readFile(path.join(__dirname, '../data/drops.json'), 'utf8', (err, data) => {
+    // pull in drop data from json
     if (err) {
       res.status(500).send('Error reading drops data');
       return;
     }
 
-    // Parse the JSON data
+    // Parse the JSON data and call dropsData
     const dropsData = JSON.parse(data);
 
     // Find the drop count for today
     const todayData = dropsData.find(entry => entry.date === currentDate);
+      //.find method - seraches for first element that meets condition in callback
+        // accepts fuction as an argument 
+      // callback function - condition checked: entry.date === currentDate
+      // entry function is individual object from dropsData
+      // In find() entry function is defined as when the entry.date === currentDate
+      // matches todays date with corresponding date in the data and assigns to todayData
+
+    console.log(todayData.drops)
 
     if (todayData) {
       // If a matching date is found, send the drop count
       res.render('meds', { drops: todayData.drops });
+        // pass "drops" variable which holds todayData.drops element
     } else {
       // If no matching date, send a default message
       res.render('meds', { drops: 'No data available for today' });
