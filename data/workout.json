@@ -1,0 +1,375 @@
+[
+    {
+      "date": "2024-11-09",
+      "theme": "Back & Neck Relief",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Cat-Cow Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Seated Row (with resistance band)",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Neck Flexion Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Shoulder Blade Squeeze",
+          "reps": 10,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-10",
+      "theme": "Legs & Core",
+      "exercises": [
+        {
+          "name": "Bodyweight Squats",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Planks",
+          "reps": "30 seconds",
+          "sets": 3
+        },
+        {
+          "name": "Glute Bridges",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Side Leg Raises",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-11",
+      "theme": "Neck & Upper Back",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Neck Flexion Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Shoulder Blade Squeeze",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Wall Angels",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Reverse Flies (with resistance band)",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-12",
+      "theme": "Legs & Lower Back",
+      "exercises": [
+        {
+          "name": "Glute Bridges",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Bird-Dog",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Wall Sits",
+          "reps": "30 seconds",
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Superman Holds",
+          "reps": "30 seconds",
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-13",
+      "theme": "Back & Neck Relief",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Cat-Cow Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Seated Row (with resistance band)",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Neck Flexion Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Shoulder Blade Squeeze",
+          "reps": 10,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-14",
+      "theme": "Legs & Core",
+      "exercises": [
+        {
+          "name": "Bodyweight Squats",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Planks",
+          "reps": "30 seconds",
+          "sets": 3
+        },
+        {
+          "name": "Glute Bridges",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Side Leg Raises",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-15",
+      "theme": "Neck & Upper Back",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Neck Flexion Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Shoulder Blade Squeeze",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Wall Angels",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Reverse Flies (with resistance band)",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-16",
+      "theme": "Legs & Lower Back",
+      "exercises": [
+        {
+          "name": "Glute Bridges",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Bird-Dog",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Wall Sits",
+          "reps": "30 seconds",
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Superman Holds",
+          "reps": "30 seconds",
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-17",
+      "theme": "Back & Neck Relief",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Cat-Cow Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Seated Row (with resistance band)",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Neck Flexion Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Shoulder Blade Squeeze",
+          "reps": 10,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-18",
+      "theme": "Legs & Core",
+      "exercises": [
+        {
+          "name": "Bodyweight Squats",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Planks",
+          "reps": "30 seconds",
+          "sets": 3
+        },
+        {
+          "name": "Glute Bridges",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Side Leg Raises",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-19",
+      "theme": "Neck & Upper Back",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Neck Flexion Stretch",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Shoulder Blade Squeeze",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Wall Angels",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Reverse Flies (with resistance band)",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-20",
+      "theme": "Legs & Lower Back",
+      "exercises": [
+        {
+          "name": "Glute Bridges",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Bird-Dog",
+          "reps": 10,
+          "sets": 3
+        },
+        {
+          "name": "Wall Sits",
+          "reps": "30 seconds",
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        },
+        {
+          "name": "Superman Holds",
+          "reps": "30 seconds",
+          "sets": 3
+        }
+      ]
+    }
+  ]
+  

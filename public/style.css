@@ -7,8 +7,8 @@ canvas {
     display: block;
 }
   
-body {
-    background-color: #ffffff; /* Change this to your desired color */
+body { 
+    background-color: #d7d7d7; /* Change this to your desired color */
     /*margin: 0; /* Remove default margins 
     padding: 0; /* Remove default padding */
     text-align: center;
@@ -33,7 +33,7 @@ body {
 }
 
 .intro-box {
-  background-color: #70bcff; /* Light blue color for the box */
+  background-color: rgb(0, 0, 2); ; /* Light blue color for the box */
   padding: 1px;
   border-radius: 5px; /* Optional: rounded corners */
   width: 80%; /* Set width to a percentage or specific pixel value */
@@ -44,5 +44,55 @@ body {
 .small-text {
   font-size: 0.85em; /* Smaller font size */
   font-style: italic;
-  color: #000000; /* Optional: dark text color */
+  color: rgb(221, 217, 217); /* Optional: dark text color */
+}
+
+#workout-table {
+  width: 80%; /* Or set to a fixed value like 1000px if you prefer */
+  margin: 20px auto; /* Center horizontally with some space above and below */
+  padding: 10px; /* Optional: add some padding inside the table */
+  table-layout: auto; /* Adjusts table width automatically based on content */
+}
+
+#workout-table th, #workout-table td {
+  text-align: center; /* Centers text inside table headers and cells */
+  padding: 8px; /* Optional: add padding for better spacing in the cells */
+}
+
+.center { /* to center table */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Popup overlay */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; /* Initially hidden */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup content */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 600px;
+  width: 80%;
+  text-align: center;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
 }

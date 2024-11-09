@@ -1,4 +1,4 @@
-// ---- TO RUN ON LOCAL: npm run devStart
+// ---- TO RUN ON LOCAL: npm run dev
 
 const express = require('express')
 const app = express()
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../public'))); // telling express t
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-// Route to display the form
+// Route to homepage
 app.get('/', (req, res) => {
   const userRule = req.query.rule || ''; // Pull out submitted rule number
     // req.query - contains query parameters sent in URL when user redirected to page
@@ -47,7 +47,7 @@ app.post('/', (req, res) => {
 
 
 
-// New route to 'backend tools' with image
+// ----BACKEND TOOLS
 app.get('/backendTools', (req, res) => {
   res.render('backendTools'); // This will render views/backendTools.ejs
 });
@@ -61,7 +61,7 @@ function timeChange(militaryTime) {
   return `${adjustedHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
 }
 
-// Moon API 
+// ----Moon API----
 app.get('/moons', async (req, res) => {
   const apiUrl = "https://api.ipgeolocation.io/astronomy?apiKey=2160b392961c4fa5ac1b75fe26c895b7"
   try {
@@ -90,14 +90,57 @@ app.get('/moons', async (req, res) => {
   }
 })
 
-// Workout page
+// -----WORKOUT-----
+
+// Example Express route
 app.get('/workout', (req, res) => {
-  res.render('workout')
+  // Assuming exercisesData is available here
+  const exercisesData = [
+    { name: "Squats", description: "A lower body exercise that targets the quads." },
+    { name: "Lunges", description: "A lower body exercise that targets the glutes and quads." },
+    // Add the rest of your exercises here
+  ];
+
+  res.render('workout', { exercises: exercisesData, theme: "Legs" });
 });
 
 
 
-// Route to get the drop count for the current day
+
+// app.get('/workout', (req, res) => {
+//   // Get the current date
+//   const today = new Date();
+//   const currentDate = today.toISOString().split('T')[0]; // Convert to 'YYYY-MM-DD'
+
+//   // Read the drops.json file
+//   fs.readFile(path.join(__dirname, '../data/workout.json'), 'utf8', (err, data) => {
+//     // pull in drop data from json
+//     if (err) {
+//       res.status(500).send('Error reading workout data');
+//       return;
+//     }
+
+//     // Parse the JSON data and call dropsData
+//     const workoutData = JSON.parse(data);
+
+//     // Find today's workout plan
+//     const todayWorkout = workoutData.find(entry => entry.date === currentDate);
+
+//     if (todayWorkout) { 
+//       // If a matching date is found, send the workout plan
+//       res.render('workout', { 
+//         theme: todayWorkout.theme,
+//         exercises: todayWorkout.exercises //pass entire exercises array to workout route
+//        }); 
+//     } else {
+//       // If no matching date, send a default message
+//       res.render('workout', { theme: 'No data available for today', exercises: [] });    }
+//   });
+// });
+
+
+
+//-----MEDS------
 app.get('/meds', (req, res) => {
   // Get the current date
   const today = new Date();
@@ -122,8 +165,6 @@ app.get('/meds', (req, res) => {
       // entry function is individual object from dropsData
       // In find() entry function is defined as when the entry.date === currentDate
       // matches todays date with corresponding date in the data and assigns to todayData
-
-    console.log(todayData.drops)
 
     if (todayData) {
       // If a matching date is found, send the drop count
