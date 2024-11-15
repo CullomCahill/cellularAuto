@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const path = require('path'); // importing path
 // REMOVE const fetch = require('node-fetch') //fetching from server so use node-fetch (built in fetch() is for client side api calls)
 const fs = require('fs'); //file system
-
+require('dotenv').config(); //add this for reading .env file for api keys
 
 
 app.set('view engine', 'ejs') //set view engine - remember to npm i ejs!
@@ -20,15 +20,19 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Route to homepage
 app.get('/', (req, res) => {
   const userRule = req.query.rule || ''; // Pull out submitted rule number
-    // req.query - contains query parameters sent in URL when user redirected to page
-    // this sets up /?rule=
-    // req.query.rule  extracts value assciated with "rule" key from query params in request
-    // || or operator, so if no rule, it returns '' (empty string)
+
+  // Validate input in query param
+  if (userRule && isNaN(userRule) || userRule < 1 || userRule > 256){
+    return res.status(400).send("nice try bro.");
+  }
+
+  console.log("Rule submitted:", userRule);
   res.render('index', { userRule }); // Pass the userRule to the .ejs template
-});
+})
 
 
 // Route to handle form submission with data validation
+// POST - send info to the server
 app.post('/', (req, res) => {
   const ruleNumber = parseInt(req.body.rule, 10); //parseInt converts from a string to base 10 integer
   if (isNaN(ruleNumber) || ruleNumber < 1 || ruleNumber > 256) {
@@ -37,12 +41,12 @@ app.post('/', (req, res) => {
       return res.status(400).send("Invalid input.");
       // if any of those true, throw error
       // "return" stops further execution of function
+  } else {
+      // Proceed if input is valid
+      console.log("Rule Number Submitted:", ruleNumber); //log the rule worked
+      // Redirect to the main page with the rule number
+      res.redirect(`/?rule=${ruleNumber}`); // Redirect with query parameter
   }
-  // Proceed if input is valid
-  console.log("Rule Number Submitted:", ruleNumber); //log the rule worked
-
-  // Redirect to the main page with the rule number
-  res.redirect(`/?rule=${ruleNumber}`); // Redirect with query parameter
 });
 
 
@@ -63,7 +67,8 @@ function timeChange(militaryTime) {
 
 // ----Moon API----
 app.get('/moons', async (req, res) => {
-  const apiUrl = "https://api.ipgeolocation.io/astronomy?apiKey=2160b392961c4fa5ac1b75fe26c895b7"
+  const apiKey = process.env.ASTRONOMY_API_KEY // hide api key
+  const apiUrl = `https://api.ipgeolocation.io/astronomy?apiKey=${apiKey}` //access api key here
   try {
     const response = await fetch(apiUrl) //get api data
     const data = await response.json() // turn response into json object
@@ -95,13 +100,59 @@ app.get('/moons', async (req, res) => {
 // Example Express route
 app.get('/workout', (req, res) => {
   // Assuming exercisesData is available here
-  const exercisesData = [
+  const exerciseDes_os = [
     { name: "Squats", description: "A lower body exercise that targets the quads." },
     { name: "Lunges", description: "A lower body exercise that targets the glutes and quads." },
     // Add the rest of your exercises here
   ];
 
-  res.render('workout', { exercises: exercisesData, theme: "Legs" });
+  const exercisePlan_os = [
+    {
+      "date": "2024-11-10",
+      "theme": "Back & Neck Relief",
+      "exercises": [
+        {
+          "name": "Shrugs",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Cat-Cow Stretch",
+          "reps": 10,
+          "sets": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-11",
+      "theme": "Legs & Core",
+      "exercises": [
+        {
+          "name": "Bodyweight Squats",
+          "reps": 15,
+          "sets": 3
+        },
+        {
+          "name": "Lunges",
+          "reps": 12,
+          "sets": 3
+        }
+      ]
+    }]
+
+  const today = new Date().toISOString().split('T')[0]; // Get today’s date in YYYY-MM-DD format
+  const todaysPlan = exercisePlan_os.find(entry => entry.date === today); // find the object from the exercisePlan_os array where date = today's date
+
+  if (todaysPlan) { //if you were able to find a plan for today
+    res.render('workout', { exercises: todaysPlan.exercises, theme: todaysPlan.theme, exerciseDes: exerciseDes_os, }); //pull out all pieces of data from object you need
+  } else { // if nothing works, return blank
+    res.render('workout', { exercises: [], theme: 'No data available for today' });
+  }
+    // _os = on server (so variables made on the server are different than the ones being sent away from server 
+    // exerciseInfo has date and theme
+    // exerciseDes = exercise description  (includes descriptions)
+    // exercisePlan = the plan for the day (names, sets and reps)
+    // remember: <%= %> only is for pulling in variables from the server to your ejs page, cant access variables in <script>
 });
 
 

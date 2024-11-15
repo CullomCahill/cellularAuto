@@ -17,5 +17,29 @@
     <a href="/" class="button">Home</a>
 
 
+
+
+
+    <!-- POP UPS HTML structure -->
+    <a href="#" id="open-popup">Click here for more info</a>
+
+    <div id="popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:300px; padding:20px; background-color:white; border:1px solid #ccc;">
+        <p>This is your popup content!</p>
+        <button id="close-popup">Close</button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('open-popup').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        document.getElementById('popup').style.display = 'block';
+        });
+
+        document.getElementById('close-popup').addEventListener('click', function() {
+        document.getElementById('popup').style.display = 'none';
+        });
+    </script>
+
+
 </body>
 </html>

@@ -14,6 +14,7 @@
     <!--send exercise data-->
     <div id="workout-table">
 
+    <!--Pull in the exercise plan for the day-->
     <% if (exercises.length > 0) { %>
         <table class="center">
           <tr> <!-- tr = table row -->
@@ -25,6 +26,7 @@
           <% exercises.forEach(exercise => { %> <!--loop through exercises table to return exercises to user-->
             <tr>
                 <!--set up link to popup with description-->
+                <!-- add back in popup here-->
                 <td><a href="#" class="exercise-link" data-exercise="<%= exercise.name %>"><%= exercise.name %></a></td>
                 <td><%= exercise.reps %></td>
                 <td><%= exercise.sets %></td>
@@ -41,8 +43,11 @@
 
     <!-- Popup modal -->
     <div id="popup" class="popup" style="display:none;">
+        <!---->
         <div class="popup-content">
+        <!--closing popup functionality-->
         <span id="close-popup" class="close">&times;</span>
+        <!--Show exercise description-->
         <p id="exercise-description"></p>
         </div>
     </div>
@@ -61,12 +66,42 @@
     </script>
 
 <script>
-    const exercisesData = JSON.stringify(exercises);
+    // Add event listeners for popup functionality
 
-    // Continue with the rest of your JavaScript...
+    // Pull in the descriptions:
+    const exerciseDes = <%= JSON.stringify(exerciseDes) %>
+
+    // Open the popup when any link with class "exercise-link" is clicked
+    document.querySelectorAll('.exercise-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Get exercise name that was clicked:
+            const clickedExercise = this.getAttribute('data-exercise');
+
+            // Find the clicked exercise from the exercises array
+            const clickedExerciseDes = exerciseDes.find(ex => ex.name === clickedExercise);
+
+            if (clickedExerciseDes) {
+                // Display the exercise description in the popup
+                document.getElementById('exercise-description').innerText = `Exercise: ${clickedExerciseDes.name}, description: ${clickedExerciseDes.description},`;
+                document.getElementById('popup').style.display = 'block';
+            }
+        });
+    });
+
+    // Close the popup when the close button is clicked
+    document.getElementById('close-popup').addEventListener('click', () => {
+        document.getElementById('popup').style.display = 'none';
+    })
 </script>
 
-<%= exerciseData %>
+<p>This is exercises: <%= JSON.stringify(exercises) %></p>
+<p>This is exerciseDes: <%= JSON.stringify(exerciseDes) %></p>
+
+Now I want to read thruogh exercises array
+
+
 
 
 
