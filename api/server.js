@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   const userRule = req.query.rule || ''; // Pull out submitted rule number
 
   // Validate input in query param
-  if (userRule && isNaN(userRule) || userRule < 1 || userRule > 256){
+  if (userRule && (isNaN(userRule) || userRule < 1 || userRule > 256)){
     return res.status(400).send("nice try bro.");
   }
 
