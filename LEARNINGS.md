@@ -19,3 +19,6 @@ POST:
 - Hidden in URL
 - No limit length
 - used to submit forms, or send sensitive data
+
+
+localStorage.clear() - to clear out local

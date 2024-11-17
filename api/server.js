@@ -99,96 +99,32 @@ app.get('/moons', async (req, res) => {
 
 // Example Express route
 app.get('/workout', (req, res) => {
-  // Assuming exercisesData is available here
-  const exerciseDes_os = [
-    { name: "Squats", description: "A lower body exercise that targets the quads." },
-    { name: "Lunges", description: "A lower body exercise that targets the glutes and quads." },
-    // Add the rest of your exercises here
-  ];
+  // will pull in des from exercises.json
+  // const exerciseDes_os = [
+  //   { name: "Squats", description: "A lower body exercise that targets the quads." },
+  //   { name: "Lunges", description: "A lower body exercise that targets the glutes and quads." },
+  //   // Add the rest of your exercises here or link to another file
+  // ];
 
-  const exercisePlan_os = [
-    {
-      "date": "2024-11-10",
-      "theme": "Back & Neck Relief",
-      "exercises": [
-        {
-          "name": "Shrugs",
-          "reps": 15,
-          "sets": 3
-        },
-        {
-          "name": "Cat-Cow Stretch",
-          "reps": 10,
-          "sets": 3
-        }
-      ]
-    },
-    {
-      "date": "2024-11-11",
-      "theme": "Legs & Core",
-      "exercises": [
-        {
-          "name": "Bodyweight Squats",
-          "reps": 15,
-          "sets": 3
-        },
-        {
-          "name": "Lunges",
-          "reps": 12,
-          "sets": 3
-        }
-      ]
-    }]
+  // Read the workout.json file
+  fs.readFile(path.join(__dirname, '../data/workout.json'), 'utf8', (err, data) => {
+    // pull in drop data from json
+    if (err) {
+      res.status(500).send('Error reading workout data');
+      return;
+    }
 
-  const today = new Date().toISOString().split('T')[0]; // Get today’s date in YYYY-MM-DD format
-  const todaysPlan = exercisePlan_os.find(entry => entry.date === today); // find the object from the exercisePlan_os array where date = today's date
+  // Parse the JSON data and call dropsData
+  const exerciseData = JSON.parse(data);
 
-  if (todaysPlan) { //if you were able to find a plan for today
-    res.render('workout', { exercises: todaysPlan.exercises, theme: todaysPlan.theme, exerciseDes: exerciseDes_os, }); //pull out all pieces of data from object you need
-  } else { // if nothing works, return blank
-    res.render('workout', { exercises: [], theme: 'No data available for today' });
-  }
-    // _os = on server (so variables made on the server are different than the ones being sent away from server 
-    // exerciseInfo has date and theme
-    // exerciseDes = exercise description  (includes descriptions)
-    // exercisePlan = the plan for the day (names, sets and reps)
-    // remember: <%= %> only is for pulling in variables from the server to your ejs page, cant access variables in <script>
+  res.render('workout', { 
+      exerciseData: exerciseData,
+      // exercises: exercisePlan_os.exercises, 
+      // theme: exercisePlan_os.theme, 
+      // exerciseDes: exerciseDes_os, 
+    }); //pull out all pieces of data from object you need
+  })
 });
-
-
-
-
-// app.get('/workout', (req, res) => {
-//   // Get the current date
-//   const today = new Date();
-//   const currentDate = today.toISOString().split('T')[0]; // Convert to 'YYYY-MM-DD'
-
-//   // Read the drops.json file
-//   fs.readFile(path.join(__dirname, '../data/workout.json'), 'utf8', (err, data) => {
-//     // pull in drop data from json
-//     if (err) {
-//       res.status(500).send('Error reading workout data');
-//       return;
-//     }
-
-//     // Parse the JSON data and call dropsData
-//     const workoutData = JSON.parse(data);
-
-//     // Find today's workout plan
-//     const todayWorkout = workoutData.find(entry => entry.date === currentDate);
-
-//     if (todayWorkout) { 
-//       // If a matching date is found, send the workout plan
-//       res.render('workout', { 
-//         theme: todayWorkout.theme,
-//         exercises: todayWorkout.exercises //pass entire exercises array to workout route
-//        }); 
-//     } else {
-//       // If no matching date, send a default message
-//       res.render('workout', { theme: 'No data available for today', exercises: [] });    }
-//   });
-// });
-
 
 
 //-----MEDS------
