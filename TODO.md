@@ -13,9 +13,6 @@ API key exposure:
 - Update key on vercel: https://vercel.com/culloms-projects/cellular-auto/settings/environment-variables 
 
 
-<%= JSON.stringify(exerciseDes) %>
-
-
 
 
 

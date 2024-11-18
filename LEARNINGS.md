@@ -22,5 +22,3 @@ POST:
 
 
 localStorage.clear() - to clear out local
-
-Pack

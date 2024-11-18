@@ -1,97 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workout</title>
-  <link rel="stylesheet" type="text/css" href="/style.css"> <!-- link to same css -->
+    <meta charset="UTF-8">
+    <title>Workout</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"> <!-- link to same css -->
 </head>
 <body>
-  <h1>Workout Time!</h1>
+    <h1>Workout Time!</h1>
 
-  <div id="workout-div">
-    <!-- Workouts will be rendered dynamically here -->
-  </div>
+    <p>Workout for <span id="date"></span></p>
+    <p>Today's theme: <%= theme %>!</p>
 
-  <!--Buttons-->
-  <button id="previous-workout" class="button">Previous Workout</button>
-  <button id="complete-workout" class="button">Complete Workout</button>
-  <a href="/" class="button">Home</a>
+    <!--send exercise data-->
+    <div id="workout-table">
 
-  <script>
-    // Initialize currentWorkoutIndex
-    if (localStorage.getItem("currentWorkoutIndex") === null) { //if it doesn't exisit
-      localStorage.setItem("currentWorkoutIndex", 0); // set the index to 0
-    }
+    <!--Pull in the exercise plan for the day-->
+    <% if (exercises.length > 0) { %>
+        <table class="center">
+          <tr> <!-- tr = table row -->
+            <th>Exercise</th> <!--table header-->
+            <th>Reps</th>
+            <th>Sets</th>
+            <th>Completed!</th>
+          </tr>
+          <% exercises.forEach(exercise => { %> <!--loop through exercises table to return exercises to user-->
+            <tr>
+                <!--set up link to popup with description-->
+                <!-- add back in popup here-->
+                <td><a href="#" class="exercise-link" data-exercise="<%= exercise.name %>"><%= exercise.name %></a></td>
+                <td><%= exercise.reps %></td>
+                <td><%= exercise.sets %></td>
+               <!-- Add a checkbox to indicate completion -->
+                <td><input type="checkbox" name="completedExercises" value="<%= exercise.name %>"></td>
+                    <!--?? come back to this when get user login working-->
+            </tr>
+          <% }); %>
+        </table>
+      <% } else { %>
+        <p>No exercises planned for today.</p>
+      <% } %>
+    </div>
 
-    // Get the current workout index
-    let currentIndex = parseInt(localStorage.getItem("currentWorkoutIndex")); //getting from local index
+    <!-- Popup modal -->
+    <div id="popup" class="popup" style="display:none;">
+        <!---->
+        <div class="popup-content">
+        <!--closing popup functionality-->
+        <span id="close-popup" class="close">&times;</span>
+        <!--Show exercise description-->
+        <p id="exercise-description"></p>
+        </div>
+    </div>
 
-    // Render the current workout
-    const exerciseData = <%- JSON.stringify(exerciseData) %>;
-    // Example: Log the data to verify
-  console.log("Exercise Data:", exerciseData);
-    const currentWorkout = exerciseData[currentIndex]; // exerciseData from server, by index
-    const workoutContainer = document.getElementById("workout-div"); //div created above
-    // give HTML to that div variable
-    workoutContainer.innerHTML = `
-      <h2>${currentWorkout.theme}</h2>
-  <table class="center">
-    <thead>
-      <tr>
-        <th>Exercise Name</th>
-        <th>Reps</th>
-        <th>Sets</th>
-        <th>Completed</th> <!-- Add a column header for the checkboxes -->
-      </tr>
-    </thead>
-    <tbody>
-      ${currentWorkout.exercises.map((ex, index) => `
-        <tr>
-          <td>${ex.name}</td>
-          <td>${ex.reps} reps</td>
-          <td>${ex.sets} sets</td>
-          <td><input type="checkbox" id="exercise-${index}" data-index="${index}"></td>
-        </tr>
-      `).join('')}
-    </tbody>
-  </table>
-    `;
+    
+      
 
-    // Handle "Complete Workout" button
-    document.getElementById("complete-workout").addEventListener("click", () => {
-      if (currentIndex < exerciseData.length - 1) { //if there are still work outs to do
-        currentIndex += 1; //add 1 to index
-        localStorage.setItem("currentWorkoutIndex", currentIndex); //update currentWorkoutIndex DOM object
-        location.reload(); // Reload page to show next workout
-      } else {
-        alert("You've completed all workouts!");
-      }
+    <script> // Get today's date and populate "date" element with it
+        const today = new Date();
+
+        // Format the date as MM/DD/YYYY
+        const formattedDate = today.toLocaleDateString();
+
+        // Display the formatted date inside the span with id "date"
+        document.getElementById("date").textContent = formattedDate;
+    </script>
+
+<script>
+    // Add event listeners for popup functionality
+
+    // Pull in the descriptions:
+    const exerciseDes = <%= JSON.stringify(exerciseDes) %>
+
+    // Open the popup when any link with class "exercise-link" is clicked
+    document.querySelectorAll('.exercise-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Get exercise name that was clicked:
+            const clickedExercise = this.getAttribute('data-exercise');
+
+            // Find the clicked exercise from the exercises array
+            const clickedExerciseDes = exerciseDes.find(ex => ex.name === clickedExercise);
+
+            if (clickedExerciseDes) {
+                // Display the exercise description in the popup
+                document.getElementById('exercise-description').innerText = `Exercise: ${clickedExerciseDes.name}, description: ${clickedExerciseDes.description},`;
+                document.getElementById('popup').style.display = 'block';
+            }
+        });
     });
 
-    // Handle "Previous Workout" button:
-    document.getElementById("previous-workout").addEventListener("click", () => {
-      if (currentIndex > 0){
-        currentIndex -= 1 //move index back 1
-        localStorage.setItem("currentWorkoutIndex", currentIndex);
-        location.reload(); // Reload page to show previous workout
-      } else {
-        alert("No previous workouts bro")
-      }
-    });
+    // Close the popup when the close button is clicked
+    document.getElementById('close-popup').addEventListener('click', () => {
+        document.getElementById('popup').style.display = 'none';
+    })
+</script>
 
-    // Handle checkboxes in table
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        const exerciseIndex = checkbox.getAttribute('data-index');
-        const isChecked = checkbox.checked;
-        // Log the completion status (you could save this data or do something with it)
-        console.log(`Exercise ${exerciseIndex} is ${isChecked ? 'completed' : 'not completed'}`);
-        // Optionally, save the state to localStorage or elsewhere for persistence
-        localStorage.setItem(`exercise-${exerciseIndex}-completed`, isChecked);
-      });
-    });
+<p>This is exercises: <%= JSON.stringify(exercises) %></p>
+<p>This is exerciseDes: <%= JSON.stringify(exerciseDes) %></p>
 
-  </script>
+Now I want to read thruogh exercises array
+
+
+
+
+
+
+    <a href="/" class="button">Home</a>
+
+    <!---
+    <script>
+        // pull in 
+        const exercisesData = <  !!! %= JSON.stringify(exercises) %>;
+        
+        // When an exercise name is clicked, show the description in a popup
+        document.querySelectorAll('.exercise-link').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent the default link behavior
+
+            // gets the attribut of the element that was stored on click
+            const exerciseName = this.getAttribute('data-exercise');
+            // Pull out the exercise from the exercise data
+            const exercise = exercisesData.find(ex => ex.name === exerciseName);
+                // so if exerciseName is "Shrugs" in line above, this line with find the 
+                // .find method takes function as parameter 
+                // create and pass "ex" function (via arrow function)
+                // ex fun returns true when exerciseData.name is the same as exerciseName
+      
+            if (exercise) { //make sure it exists
+              // Show the popup with the exercise description
+              document.getElementById('exercise-description').innerText = exercise.description;
+              document.getElementById('popup').style.display = 'block';
+            }
+          });
+        });
+      
+        // Close the popup when the close button is clicked
+        document.getElementById('close-popup').addEventListener('click', () => {
+          document.getElementById('popup').style.display = 'none';
+        });
+      </script>
+-->
+
 </body>
 </html>
