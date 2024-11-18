@@ -12,7 +12,7 @@ require('dotenv').config(); //add this for reading .env file for api keys
 
 app.set('view engine', 'ejs') //set view engine - remember to npm i ejs!
 app.set('views', __dirname + '/views') //point res.render('index') to /views folder
-app.use(express.static(path.join(__dirname, 'public'))); // telling express to use client side .js files
+app.use(express.static(path.join(__dirname, '../public'))); // telling express to use client side .js files
 // when you reference in html, this will append /public
 app.use(bodyParser.urlencoded({extended: true}))
 
