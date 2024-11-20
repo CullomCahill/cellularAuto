@@ -16,6 +16,10 @@
       "dest": "/public/cellAuto.js"
     },
     {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/api/server.js"
     }
