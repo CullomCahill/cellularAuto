@@ -9,11 +9,15 @@
   "routes": [
     {
       "src": "/style.css",
-      "dest": "../public/style.css"
+      "dest": "/public/style.css"
+    },
+    {
+      "src": "/cellAuto.js",
+      "dest": "/public/cellAuto.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/server.js"
+      "dest": "/api/server.js"
     }
   ]
 }
