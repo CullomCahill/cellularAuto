@@ -146,7 +146,7 @@ app.get('/workout', (req, res) => {
   if (todaysPlan) { //if you were able to find a plan for today
     res.render('workout', { exercises: todaysPlan.exercises, theme: todaysPlan.theme, exerciseDes: exerciseDes_os, }); //pull out all pieces of data from object you need
   } else { // if nothing works, return blank
-    res.render('workout', { exercises: [], theme: 'No data available for today' });
+    res.render('workout', { exercises: [], theme: 'No data available for today', exerciseDes: exerciseDes_os });
   }
     // _os = on server (so variables made on the server are different than the ones being sent away from server 
     // exerciseInfo has date and theme
