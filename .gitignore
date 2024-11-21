@@ -6,3 +6,5 @@ ignore/
 
 # hide api key
 .env
+
+LEARNINGS.md
