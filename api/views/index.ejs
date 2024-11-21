@@ -3,8 +3,9 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/style.css"> <!--dont need full path to style because in
-      with express.static('public') public folder becomes root for static assets (css js images etc)-->
+    <!--<link rel="stylesheet" type="text/css" href="/style.css"> --><!--dont need full path to style because in with express.static('public') public folder becomes root for static assets (css js images etc)-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css?v=1"> <!--?v=1 force cache busting, change to v2 v3 as change css-->
     <meta charset="utf-8" />
     <!--Is this messing it up?
     <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
