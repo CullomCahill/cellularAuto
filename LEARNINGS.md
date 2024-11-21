@@ -19,3 +19,10 @@ POST:
 - Hidden in URL
 - No limit length
 - used to submit forms, or send sensitive data
+
+
+
+GIT
+git branch new-branch-name <commit-hash>  - create branch from commit
+git checkout new-branch-name - switch to branch
+git push -u origin new-branch-name - pushing new branch
