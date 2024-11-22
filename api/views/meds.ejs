@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Meds</title>
-    <link rel="stylesheet" type="text/css" href="/style.css?v=1"> <!--?v=1 force cache busting, change to v2 v3 as change css-->
-</head>
-<body>
+<!--link to header partial-->
+<%- include('partials/header') %>
+
+
     <h1>Medicine Drops Tracker</h1>
 
     <!--drops.day = date return drops-->
@@ -26,5 +22,8 @@
         </script>
 
     <a href="/" class="button">Home</a>
-  </body>
-</html>
+
+
+
+<!--link to footer partial-->
+<%- include('partials/footer') %>

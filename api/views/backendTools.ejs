@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Backend Tools</title>
-    <link rel="stylesheet" type="text/css" href="/style.css?v=1"> <!--?v=1 force cache busting, change to v2 v3 as change css-->
-</head>
-<body>
+<!--link to header partial-->
+<%- include('partials/header') %> <!--include is a built in ejs function-->
+
+
     <h1>Neat Backend Tools!</h1>
     <img src="/images/cool_pic.png" alt="My Image" /> <!-- link to image -->
     <br>
     <a href="/" class="button">Home</a>
-</body>
-</html>
+
+<!--link to footer partial-->
+<%- include('partials/footer') %>

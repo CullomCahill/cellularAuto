@@ -62,6 +62,9 @@ body {
 .center { /* to center table */
   margin-left: auto;
   margin-right: auto;
+  padding: 20px; /* Adjust the padding for the table */
+  border-spacing: 10px;
+  text-align: left; /* Optional: Aligns text to the left */
 }
 
 
@@ -95,4 +98,57 @@ body {
   right: 10px;
   font-size: 24px;
   cursor: pointer;
+}
+
+
+/* Base styles remain the same */
+
+/* Media queries for different screen sizes */
+@media screen and (max-width: 768px) {
+  /* Tablet and mobile styles */
+  body {
+      padding: 10px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+
+  .intro-box {
+      width: 90%;
+      margin: 10px auto;
+  }
+
+  .button {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      text-align: center;
+  }
+
+  input[type="number"] {
+      width: 90%;
+      margin: 10px auto;
+  }
+
+  #canvas-container {
+      width: 100%;
+      overflow-x: hidden;
+  }
+
+  canvas {
+      max-width: 100%;
+      height: auto;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+  h1 {
+      font-size: 20px;
+  }
+
+  .small-text {
+      font-size: 14px;
+  }
 }

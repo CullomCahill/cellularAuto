@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Moons</title>
-    <link rel="stylesheet" type="text/css" href="/style.css?v=1"> <!--?v=1 force cache busting, change to v2 v3 as change css-->
-</head>
-<body>
+<!--link to header partial-->
+<%- include('partials/header') %> <!--include is a built in ejs function-->
+
+
     <h1>Moon times!</h1>
     <!--These pieces are being rendered in server.js for the /moons route from the api-->  
     <p>Sunrise: <%= sunrise %></p>
@@ -41,5 +37,5 @@
     </script>
 
 
-</body>
-</html>
+<!--link to footer partial-->
+<%- include('partials/footer') %>
